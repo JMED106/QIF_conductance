@@ -1,0 +1,222 @@
+###################################################
+# Config file: system parameters and architecture #
+###################################################
+# General options, default values (can be overridden by command line options)
+#̣ ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+# Perturbation options
+Perturbation:
+  -m --mode:
+    description: "Spatial mode of the perturbation."
+    default:     [1]
+    name:        "<mode>"
+    choices:     ~
+  -sP --spatialProfile:
+    description: "Spatial profile of the perturbation."
+    default:     'fourier'
+    name:        "<spatial-profile>"
+    choices:     ['fourier', 'gauss']   
+  -a --amplitude:
+    description: "Amplitude of the perturbation."
+    default:     10.0
+    name:        "<amplitude>"
+    choices:     ~
+  -sym --symmetry:
+    description: "Symmetry of the perturbation."
+    default:     0.0
+    name:        "<symmetry>"
+    choices:     ~
+  -pt --pulseDt:
+    description: "Duration of the pulse (a.u.)"
+    default:     0.5
+    name:        "<pdt>"
+    choices:     ~
+  -pt0 --pulset0:
+    description: "Onset of the pulse (a.u.)"
+    default:     2.5
+    name:        "<pt0>"
+    choices:     ~
+  -A --attack:
+    description: "Pulse attack function."
+    default:     'exponential'
+    name:        "<attack>"
+    choices:     ['exponential', 'instantaneous']
+  -R --release:
+    description: "Pulse release function."
+    default:     'exponential'
+    name:        "<release>"
+    choices:     ['exponential', 'instantaneous']
+  -pV --pertVoltages:
+    description: "Perturbation done by translation of voltages."
+    default:     False
+    name:        "<pert-Volts>"
+    choices:     [False, True]
+  -pD --pertDisplacement:
+    description: "Displacement of mean potential."
+    default:     0.1
+    name:        "<pert-disp>"
+    choices:     ~
+  -pT --pertType:
+    description: "Perturbation type."
+    default:     'pulse'
+    name:        "<pert-type>"
+    choices:     ['pulse', 'oscillatory', 'chirp']
+Noise:
+  -ns --noise:
+    description: "Spatial noise boolean."
+    default:     False
+    name:        "<noise>"
+    choices:     [True, False]
+  -nD --noisediffusion:
+    description: "Spatial noise diffusion parameter."
+    default:     1.0
+    name:        "<noiseD>"
+    choices:     ~
+QIF:
+  -e --eta:
+    description: "External current."
+    default:     5.0
+    name:        "<eta>"
+    choices:     ~
+  -tm --taum:
+    description: "Time constant (to be applied after computations are done, faketau) (s)."
+    default:     !!float 20.0E-3
+    name:        "<taum>"
+    choices:     ~
+  -td --taud:
+    description: "Synaptic time constant (a.u.)."
+    default:     100.0
+    name:        "<taud>"
+    choices:     ~
+  -ti --taui:
+    description: "Synaptic time constant (a.u.)."
+    default:     10.0
+    name:        "<tauin>"
+    choices:     ~
+  -U --fast:
+    description: "Synaptic fast time constant (a.u.)."
+    default:     0.05
+    name:        "<fast>"
+    choices:     ~
+  -g --conductance:
+    description: "Synaptic conductanve(a.u.)."
+    default:     5.0
+    name:        "<conductance>"
+    choices:     ~
+  -E --reversV:
+    description: "Reversal potential (a.u.)."
+    default:     -5.0
+    name:        "<reversalV>"
+    choices:     ~
+Network:
+  -c --cprofile:
+    description: "Connectivity matrix style."
+    default:     'fs'
+    name:        "<cnt>"
+    choices:     ['uniform', 'mex-hat', 'fs', 'pecora1', 'laplace']
+  -j --coupling:
+    description: "Synaptic coupling strength."
+    default:     0.0
+    name:        "<j0>"
+    choices:     ~
+  -jk --modes:
+    description: "Modes of connectivity."
+    default:     [0.0, 10.0, 7.5, -2.5]
+    name:        "<[jk]>"
+    choices:     ~
+  -N --popsize:
+    description: "Number of neurons for the qif system."
+    default:     50000
+    name:        "<N>"
+    choices:     ~
+  -n --nodes:
+    description: "Number of nodes in the network."
+    default:     100
+    name:        "<n>"
+    choices:     ~
+  -dg --degree:
+    description: "in-degree of the network (in percentage relative to the network size)."
+    default:     0.4
+    name:        "<dg>"
+    choices:     ~
+  -D --distribution:
+    description: "Distribution of external currents for the qif system ('lorentz', 'gauss', 'noise': non-distributed but under GWN)"
+    default:     'lorentz'
+    name:        "<distribution>"
+    choices:     ['lorentz', 'gauss', 'noise']
+  -d --delta:
+    description: "Width of the external current distibution."
+    default:     1.0
+    name:        "<delta>"
+    choices:     ~
+Simulation:
+  -f --file:
+    description: "Configuration file."
+    default:     "./conf.txt"
+    name:        "<conf file>"
+    choices:     ~
+  -ic --initconds:
+    description: "Override initial conditions generator."
+    default:     False
+    name:        "<initconds>"
+    choices:     [False ,True]
+  -ext --external:
+    description: "Load external custom point."
+    default:     None
+    name:        "<ext_cond>"
+    choices:     ~
+  -oic --overrideic:
+    description: "Override initial conditions generator."
+    default:     False
+    name:        "<overinitconds>"
+    choices:     [True, False]
+  -s --system:
+    description: "Systems to be simulated."
+    default:     'qif'
+    name:        "<system>"
+    choices:     ['qif', 'nf', 'both']
+  -tf --tfinal:
+    description: "Total time of simulation (in dt time, a.u.)."
+    default:     15.0
+    name:        "<tfinal>"
+    choices:     ~
+  -dt --timestep:
+    description: "Time step (a.u.)."
+    default:     0.001
+    name:        "<dt>"
+    choices:     ~
+  -t0 --inittime:
+    description: "Initial time (a.u.)."
+    default:     0.0
+    name:        "<t0>"
+    choices:     ~
+  -nos --nosave:
+    description: "Don't save data to dictionary."
+    default:     False
+    name:        "<no-save>"
+    choices:     ~
+  -db --debug:
+    description: "Debugging level. Default is INFO."
+    default:     DEBUG
+    name:        "<debug>"
+    choices:     [DEBUG, INFO, ERROR, WARNING, CRITICAL]
+  -pl --plot:
+    description: "Saving minimal data and plotting."
+    default:     False
+    name:        "<plot>"
+    choices:     [True, False]
+  -gpl --gplot:
+    description: "Preliminary plotting with gnuplot."
+    default:     False
+    name:        "<gplot>"
+    choices:     [True, False]
+  -rast --raster:
+    description: "Saving raster plot."
+    default:     False
+    name:        "<raster>"
+    choices:     [True, False]
+  -Frq --freqAnalysis:
+    description: "Frequency analysis.."
+    default:     False
+    name:        "<freqA>"
+    choices:     [True, False]
+    
